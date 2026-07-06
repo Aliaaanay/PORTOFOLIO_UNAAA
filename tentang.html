@@ -399,25 +399,42 @@
         <button
           id="mobile-close-btn"
           class="text-3xl text-gray-900 dark:text-white"
+          aria-label="Tutup Menu"
         >
           <i class="fas fa-times"></i>
         </button>
         <ul class="flex flex-col text-center space-y-4">
-          <li><a href="beranda.html" class="text-2xl font-medium">Home</a></li>
-          <li>
-            <a href="tentang.html" class="text-2xl font-semibold text-primary"
+          <li class="nav-link-item">
+            <a
+              href="beranda.html"
+              class="text-2xl font-medium text-gray-800 dark:text-gray-200 hover:text-primary dark:hover:text-primary-dark-mode"
+              >Home</a
+            >
+          </li>
+          <li class="nav-link-item">
+            <a
+              href="tentang.html"
+              class="text-2xl font-medium text-gray-800 dark:text-gray-200 hover:text-primary dark:hover:text-primary-dark-mode"
               >About</a
             >
           </li>
-          <li>
-            <a href="portfolio.html" class="text-2xl font-medium">Portofolio</a>
+          <li class="nav-link-item">
+            <a
+              href="portfolio.html"
+              class="text-2xl font-medium text-gray-800 dark:text-gray-200 hover:text-primary dark:hover:text-primary-dark-mode"
+              >Work</a
+            >
           </li>
-          <li>
-            <a href="kontak.html" class="text-2xl font-medium">Contact</a>
+          <li class="nav-link-item">
+            <a
+              href="kontak.html"
+              class="text-2xl font-medium text-gray-800 dark:text-gray-200 hover:text-primary dark:hover:text-primary-dark-mode"
+              >Contact</a
+            >
           </li>
         </ul>
         <div class="toggle-switch-container">
-          <span class="font-medium text-gray-800 dark:text-gray-200"
+          <span class="text-gray-800 dark:text-gray-200 font-medium"
             >Dark Mode</span
           >
           <label class="toggle-switch" for="toggle-dark-mode-mobile">
@@ -431,7 +448,6 @@
         </div>
       </div>
     </div>
-
     <main class="max-w-7xl mx-auto px-4 lg:px-8 py-10">
       <section
         class="text-center py-12 md:py-16 opacity-0 translate-y-5 transition-all duration-700 ease-out"
