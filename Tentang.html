@@ -1,0 +1,893 @@
+<!doctype html>
+<html lang="id" class="transition-colors duration-500">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tentang Saya | Portofolio SABRINA LUNA APSARI F</title>
+
+    <meta
+      name="description"
+      content="Ketahui lebih lanjut tentang Sabrina Luna: keahlian teknis, riwayat pendidikan, dan visi sebagai Pengembang Web Interaktif dan Desainer UI/UX."
+    />
+    <link rel="canonical" href="https://portofolio-sabrina.com/tentang.html" />
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      /* --- CUSTOM CSS FOR SKILL HEXAGONS & TOGGLE SWITCH --- */
+      .hexagon-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 2rem;
+        padding-top: 1rem;
+      }
+      .skill-hexagon {
+        clip-path: polygon(
+          50% 0%,
+          100% 25%,
+          100% 75%,
+          50% 100%,
+          0% 75%,
+          0% 25%
+        );
+        aspect-ratio: 1 / 0.866;
+        transition:
+          transform 0.5s ease-out,
+          box-shadow 0.5s;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        padding: 1rem;
+        position: relative;
+        overflow: hidden;
+      }
+      .skill-hexagon:hover {
+        transform: scale(1.05) rotate(2deg);
+        box-shadow: 0 0 30px rgba(102, 51, 153, 0.6);
+      }
+      .dark .skill-hexagon:hover {
+        box-shadow: 0 0 30px rgba(255, 215, 0, 0.6);
+      }
+      .skill-level-overlay {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        background-color: var(--tw-color-primary);
+        transition: height 1.5s ease-out;
+        opacity: 0.8;
+      }
+      .skill-level-90 {
+        height: 90%;
+      }
+      .skill-level-95 {
+        height: 95%;
+      }
+      .skill-level-88 {
+        height: 88%;
+      }
+      .skill-level-80 {
+        height: 80%;
+      }
+      .skill-level-75 {
+        height: 75%;
+      }
+      .skill-level-85 {
+        height: 85%;
+      }
+      .dark .skill-level-overlay {
+        background-color: var(--tw-color-primary-dark-mode);
+      }
+      .skill-icon-content {
+        position: relative;
+        z-index: 10;
+      }
+      @media (max-width: 640px) {
+        .hexagon-grid {
+          grid-template-columns: repeat(2, 1fr);
+          gap: 1rem;
+        }
+      }
+      .loader {
+        border: 5px solid rgba(0, 0, 0, 0.1);
+        border-top: 5px solid var(--tw-color-primary);
+        border-radius: 50%;
+        width: 40px;
+        height: 40px;
+        animation: spin 1s linear infinite;
+      }
+      .dark .loader {
+        border-top: 5px solid var(--tw-color-primary-dark-mode);
+      }
+      @keyframes spin {
+        0% {
+          transform: rotate(0deg);
+        }
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+      #main-menu-modal {
+        position: fixed;
+        inset: 0;
+        z-index: 50;
+        background-color: rgba(0, 0, 0, 0.8);
+        display: none;
+        align-items: center;
+        justify-content: center;
+        transition: opacity 0.3s;
+      }
+      #main-menu-content {
+        background-color: #ffffff;
+        border-radius: 1rem;
+        padding: 2rem 4rem;
+        width: 90%;
+        max-width: 400px;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+        transform: scale(0.9);
+        transition: transform 0.3s ease-out;
+      }
+      .dark #main-menu-content {
+        background-color: #1f2937;
+      }
+      #main-menu-modal.active {
+        display: flex;
+        opacity: 1;
+      }
+      #main-menu-modal.active #main-menu-content {
+        transform: scale(1);
+      }
+      .nav-link-item {
+        margin: 1rem 0;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      ::selection {
+        background: rgba(102, 51, 153, 0.24);
+        color: #1f2937;
+      }
+
+      body {
+        background-image:
+          radial-gradient(
+            circle at top left,
+            rgba(102, 51, 153, 0.14),
+            transparent 24%
+          ),
+          radial-gradient(
+            circle at bottom right,
+            rgba(255, 215, 0, 0.14),
+            transparent 24%
+          ),
+          linear-gradient(135deg, #f8f7ff 0%, #f5f5f5 100%);
+      }
+
+      .dark body {
+        background-image:
+          radial-gradient(
+            circle at top left,
+            rgba(255, 215, 0, 0.14),
+            transparent 24%
+          ),
+          radial-gradient(
+            circle at bottom right,
+            rgba(102, 51, 153, 0.16),
+            transparent 24%
+          ),
+          linear-gradient(135deg, #111827 0%, #0f172a 100%);
+      }
+
+      .about-card,
+      .pilar-card,
+      .timeline-content {
+        -webkit-backdrop-filter: blur(8px);
+        backdrop-filter: blur(8px);
+      }
+
+      .section-chip {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.45rem;
+        padding: 0.45rem 0.8rem;
+        border-radius: 9999px;
+        font-size: 0.8rem;
+        font-weight: 700;
+        background: rgba(102, 51, 153, 0.1);
+        color: #663399;
+      }
+
+      .dark .section-chip {
+        background: rgba(255, 215, 0, 0.12);
+        color: #fef3c7;
+      }
+      #mobile-close-btn {
+        position: absolute;
+        top: 1rem;
+        right: 1rem;
+      }
+      .toggle-switch-container {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-top: 20px;
+      }
+      .toggle-switch {
+        position: relative;
+        display: inline-block;
+        width: 60px;
+        height: 34px;
+        margin-left: auto;
+      }
+      .toggle-switch input {
+        opacity: 0;
+        width: 0;
+        height: 0;
+      }
+      .toggle-slider {
+        position: absolute;
+        cursor: pointer;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: #ccc;
+        transition: 0.4s;
+        border-radius: 34px;
+      }
+      .toggle-slider:before {
+        position: absolute;
+        content: "";
+        height: 26px;
+        width: 26px;
+        left: 4px;
+        bottom: 4px;
+        background-color: white;
+        transition: 0.4s;
+        border-radius: 50%;
+      }
+      input:checked + .toggle-slider {
+        background-color: var(--tw-color-primary);
+      }
+      .dark input:checked + .toggle-slider {
+        background-color: var(--tw-color-primary-dark-mode);
+      }
+      input:checked + .toggle-slider:before {
+        transform: translateX(26px);
+      }
+      .toggle-slider.round:before {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-family: "Font Awesome 6 Free";
+        font-weight: 900;
+        font-size: 14px;
+      }
+      .toggle-switch input:not(:checked) + .toggle-slider.round:before {
+        content: "\f185";
+        color: #ffd700;
+        transform: translateX(-4px);
+        left: 10px;
+      }
+      .toggle-switch input:checked + .toggle-slider.round:before {
+        content: "\f186";
+        color: #663399;
+        transform: translateX(20px);
+        left: 4px;
+      }
+    </style>
+    <script>
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              // --- SKEMA WARNA BARU ---
+              primary: "#663399", // Deep Violet (Light Mode Accent)
+              "primary-hover": "#552288",
+              "primary-dark-mode": "#FFD700", // Gold (Dark Mode Accent)
+              "background-light": "#f5f5f5", // Light Background
+              "card-light": "#ffffff", // Card/Element Background in Light Mode
+              "error-color": "#e74c3c", // Error color tetap merah
+            },
+            boxShadow: {
+              soft: "6px 6px 15px rgba(189, 189, 189, 0.4), -6px -6px 15px rgba(255, 255, 255, 0.7)",
+              "soft-dark":
+                "8px 8px 20px rgba(0, 0, 0, 0.5), -8px -8px 20px rgba(35, 35, 55, 0.2)",
+              // CTA Shadow menggunakan warna Deep Violet (Primary)
+              cta: "0 6px 15px rgba(102, 51, 153, 0.4)",
+              // Focus Ring menggunakan warna Deep Violet (Primary)
+              "focus-ring": "0 0 0 4px rgba(102, 51, 153, 0.4)",
+            },
+          },
+        },
+      };
+    </script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600;800&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body
+    class="bg-background-light dark:bg-gray-900 text-gray-900 dark:text-gray-100 font-sans transition-colors duration-500"
+  >
+    <div
+      id="loading-overlay"
+      class="fixed inset-0 z-[1000] bg-white/90 dark:bg-gray-900/90 flex justify-center items-center"
+    >
+      <div class="loader"></div>
+    </div>
+
+    <header
+      class="sticky top-0 z-50 bg-card-light/90 dark:bg-gray-800/90 shadow-md backdrop-blur"
+    >
+      <nav
+        class="flex items-center justify-between max-w-7xl mx-auto p-4 lg:px-8 md:grid md:grid-cols-[auto_1fr_auto] md:items-center"
+        role="navigation"
+        aria-label="Navigasi Utama"
+      >
+        <div
+          class="font-extrabold text-2xl text-gray-900 dark:text-white justify-self-start"
+        >
+          SABRINA LUNA
+          <span class="text-primary dark:text-primary-dark-mode">.</span>
+        </div>
+
+        <div
+          class="hidden md:flex items-center justify-center md:justify-self-center"
+        >
+          <button
+            id="theme-toggle"
+            class="inline-flex h-12 w-12 items-center justify-center rounded-full bg-gray-100 text-gray-900 shadow-sm transition hover:bg-primary/10 dark:bg-gray-700 dark:text-white dark:hover:bg-primary-dark-mode/10"
+            aria-label="Ubah mode gelap atau terang"
+          >
+            <i class="fas fa-moon"></i>
+          </button>
+        </div>
+
+        <ul
+          class="hidden md:flex flex-row md:space-x-6 lg:space-x-8 text-sm font-semibold tracking-wider md:justify-self-end"
+        >
+          <li>
+            <a href="beranda.html" class="hover:text-primary transition-colors"
+              >HOME</a
+            >
+          </li>
+          <li>
+            <a
+              href="tentang.html"
+              class="text-primary dark:text-primary-dark-mode border-b-2 border-primary"
+              >ABOUT</a
+            >
+          </li>
+          <li>
+            <a
+              href="portfolio.html"
+              class="hover:text-primary transition-colors"
+              >WORK</a
+            >
+          </li>
+          <li>
+            <a href="kontak.html" class="hover:text-primary transition-colors"
+              >CONTACT</a
+            >
+          </li>
+        </ul>
+      </nav>
+    </header>
+
+    <div id="main-menu-modal" class="opacity-0 pointer-events-none">
+      <div id="main-menu-content" class="relative">
+        <button
+          id="mobile-close-btn"
+          class="text-3xl text-gray-900 dark:text-white"
+        >
+          <i class="fas fa-times"></i>
+        </button>
+        <ul class="flex flex-col text-center space-y-4">
+          <li><a href="beranda.html" class="text-2xl font-medium">Home</a></li>
+          <li>
+            <a href="tentang.html" class="text-2xl font-semibold text-primary"
+              >About</a
+            >
+          </li>
+          <li>
+            <a href="portfolio.html" class="text-2xl font-medium">Portofolio</a>
+          </li>
+          <li>
+            <a href="kontak.html" class="text-2xl font-medium">Contact</a>
+          </li>
+        </ul>
+        <div class="toggle-switch-container">
+          <span class="font-medium text-gray-800 dark:text-gray-200"
+            >Dark Mode</span
+          >
+          <label class="toggle-switch" for="toggle-dark-mode-mobile">
+            <input
+              type="checkbox"
+              id="toggle-dark-mode-mobile"
+              aria-label="Ubah mode gelap atau terang"
+            />
+            <span class="toggle-slider round"></span>
+          </label>
+        </div>
+      </div>
+    </div>
+
+    <main class="max-w-7xl mx-auto px-4 lg:px-8 py-10">
+      <section
+        class="text-center py-12 md:py-16 opacity-0 translate-y-5 transition-all duration-700 ease-out"
+        data-scroll-reveal
+      >
+        <div class="flex justify-center mb-4">
+          <span class="section-chip"
+            ><i class="fas fa-star"></i> Modern • Professional • 2026</span
+          >
+        </div>
+        <h1
+          class="text-4xl md:text-5xl lg:text-6xl font-extrabold text-gray-900 dark:text-white mb-4"
+        >
+          Siapa Sabrina Luna?
+        </h1>
+        <p
+          class="text-lg text-gray-600 dark:text-gray-400 max-w-3xl mx-auto leading-relaxed"
+        >
+          Pengembang Fullstack dan Data Analyst yang berorientasi pada hasil
+          mengintegrasikan Machine Learning dalam setiap IT Project untuk
+          memberikan kualitas, kecepatan, dan dampak.
+        </p>
+      </section>
+
+      <section
+        class="flex flex-col md:flex-row items-center gap-10 md:gap-16 py-12 md:py-20 border-b border-gray-100 dark:border-gray-800 opacity-0 translate-y-5 transition-all duration-1000 ease-out"
+        data-scroll-reveal
+      >
+        <div class="bio-content w-full">
+          <div
+            class="flex items-center gap-3 mb-4 justify-center md:justify-start"
+          >
+            <span
+              class="w-6 h-[1.5px] bg-primary dark:bg-primary-dark-mode"
+            ></span>
+            <h2
+              class="text-[10px] md:text-xs font-bold tracking-[0.15em] text-primary dark:text-primary-dark-mode uppercase"
+            >
+              Visi & Filosofi
+            </h2>
+          </div>
+
+          <h3
+            class="text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900 dark:text-white mb-6 leading-snug text-center md:text-left"
+          >
+            Membangun
+            <span class="text-primary dark:text-primary-dark-mode"
+              >Pengalaman Digital</span
+            >
+            Berbasis Kecerdasan Data.
+          </h3>
+
+          <div class="grid md:grid-cols-2 gap-8 items-start">
+            <div class="space-y-4">
+              <p
+                class="text-base md:text-lg text-gray-700 dark:text-gray-300 leading-relaxed text-center md:text-left"
+              >
+                Halo! Saya
+                <span
+                  class="font-bold text-gray-900 dark:text-white border-b-2 border-primary/30"
+                  >Sabrina Luna Apsari F.</span
+                >
+              </p>
+              <p
+                class="text-sm md:text-base text-gray-600 dark:text-gray-400 leading-relaxed text-center md:text-left"
+              >
+                Saya berdiri di persimpangan antara estetika
+                <span class="italic font-medium">Frontend Development</span> dan
+                kekuatan
+                <span class="italic font-medium text-primary"
+                  >Machine Learning</span
+                >. Fokus saya menciptakan antarmuka intuitif yang didorong oleh
+                analisis data strategis.
+              </p>
+            </div>
+
+            <div
+              class="about-card bg-gray-50/80 dark:bg-gray-800/60 p-6 md:p-8 rounded-2xl border border-gray-100 dark:border-gray-700 shadow-sm relative overflow-hidden group"
+            >
+              <div
+                class="absolute top-0 right-0 p-4 opacity-5 group-hover:opacity-10 transition-opacity"
+              >
+                <i class="fas fa-quote-right text-3xl text-primary"></i>
+              </div>
+              <p
+                class="relative z-10 text-gray-800 dark:text-gray-200 leading-relaxed font-semibold text-base md:text-lg"
+              >
+                Filosofi kerja saya:
+                <span
+                  class="block mt-1 font-bold text-primary dark:text-primary-dark-mode text-xl"
+                >
+                  Efisiensi, Wawasan, & Eksekusi.
+                </span>
+              </p>
+              <p
+                class="mt-3 text-[13px] text-gray-500 dark:text-gray-400 italic leading-relaxed"
+              >
+                "Frontend yang kuat harus didukung data yang dalam. Setiap baris
+                kode adalah langkah menuju dampak bisnis nyata."
+              </p>
+            </div>
+          </div>
+
+          <div
+            class="flex justify-around flex-wrap gap-y-8 pt-12 mt-12 border-t border-gray-100 dark:border-gray-800"
+          >
+            <div
+              class="text-center w-1/3 sm:w-1/4 md:w-auto opacity-0 transform scale-95 transition-all duration-500 ease-out"
+              data-scroll-reveal-child
+            >
+              <span
+                class="text-4xl font-extrabold text-primary dark:text-primary-dark-mode block"
+                >3+</span
+              >
+              <p
+                class="text-xs font-bold uppercase tracking-widest text-gray-500 mt-2"
+              >
+                Tahun Pengalaman
+              </p>
+            </div>
+            <div
+              class="text-center w-1/3 sm:w-1/4 md:w-auto opacity-0 transform scale-95 transition-all duration-500 ease-out delay-100"
+              data-scroll-reveal-child
+            >
+              <span
+                class="text-4xl font-extrabold text-primary dark:text-primary-dark-mode block"
+                >20+</span
+              >
+              <p
+                class="text-xs font-bold uppercase tracking-widest text-gray-500 mt-2"
+              >
+                Proyek Selesai
+              </p>
+            </div>
+            <div
+              class="text-center w-1/3 sm:w-1/4 md:text-auto opacity-0 transform scale-95 transition-all duration-500 ease-out delay-200"
+              data-scroll-reveal-child
+            >
+              <span
+                class="text-4xl font-extrabold text-primary dark:text-primary-dark-mode block"
+                >100%</span
+              >
+              <p
+                class="text-xs font-bold uppercase tracking-widest text-gray-500 mt-2"
+              >
+                Kepuasan Klien
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section
+        class="py-16 md:py-24 opacity-0 translate-y-5 transition-all duration-700 ease-out"
+        data-scroll-reveal
+      >
+        <h2
+          class="text-3xl font-bold text-gray-900 dark:text-white mb-12 text-center uppercase tracking-widest"
+        >
+          &middot; Pilar Keahlian Kami
+        </h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div
+            class="pilar-card bg-card-light dark:bg-gray-800 p-8 rounded-2xl shadow-soft dark:shadow-soft-dark border border-transparent hover:border-primary transition-all group"
+          >
+            <i
+              class="fas fa-code text-3xl text-primary mb-4 group-hover:scale-110 transition-transform"
+            ></i>
+            <h3
+              class="text-xl font-bold mb-3 group-hover:text-primary transition-colors"
+            >
+              Frontend Development & Interactivity
+            </h3>
+            <p class="text-gray-600 dark:text-gray-400 text-sm leading-relaxed">
+              Fokus pada React.js, Tailwind CSS, dan animasi modern untuk
+              menciptakan antarmuka responsif dan interaktif.
+            </p>
+          </div>
+          <div
+            class="pilar-card bg-card-light dark:bg-gray-800 p-8 rounded-2xl shadow-soft dark:shadow-soft-dark border border-transparent hover:border-primary transition-all group"
+          >
+            <i
+              class="fas fa-robot text-3xl text-primary mb-4 group-hover:scale-110 transition-transform"
+            ></i>
+            <h3
+              class="text-xl font-bold mb-3 group-hover:text-primary transition-colors"
+            >
+              Integrasi Data & Machine Learning
+            </h3>
+            <p class="text-gray-600 dark:text-gray-400 text-sm leading-relaxed">
+              Membangun API efisien untuk menyajikan prediksi atau wawasan data
+              secara real-time ke aplikasi web.
+            </p>
+          </div>
+          <div
+            class="pilar-card bg-card-light dark:bg-gray-800 p-8 rounded-2xl shadow-soft dark:shadow-soft-dark border border-transparent hover:border-primary transition-all group"
+          >
+            <i
+              class="fas fa-chart-line text-3xl text-primary mb-4 group-hover:scale-110 transition-transform"
+            ></i>
+            <h3
+              class="text-xl font-bold mb-3 group-hover:text-primary transition-colors"
+            >
+              Data Analyst & Visualization
+            </h3>
+            <p class="text-gray-600 dark:text-gray-400 text-sm leading-relaxed">
+              Menganalisis data kompleks dan menyajikannya dalam dashboard
+              visual untuk mendukung keputusan strategis.
+            </p>
+          </div>
+          <div
+            class="pilar-card bg-card-light dark:bg-gray-800 p-8 rounded-2xl shadow-soft dark:shadow-soft-dark border border-transparent hover:border-primary transition-all group"
+          >
+            <i
+              class="fas fa-sitemap text-3xl text-primary mb-4 group-hover:scale-110 transition-transform"
+            ></i>
+            <h3
+              class="text-xl font-bold mb-3 group-hover:text-primary transition-colors"
+            >
+              IT Project Management & Strategy
+            </h3>
+            <p class="text-gray-600 dark:text-gray-400 text-sm leading-relaxed">
+              Memimpin siklus hidup proyek dari perencanaan hingga peluncuran
+              guna memastikan keselarasan teknis dan bisnis.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section
+        class="py-16 md:py-24 max-w-5xl mx-auto opacity-0 translate-y-5 transition-all duration-700 ease-out"
+        data-scroll-reveal
+      >
+        <h2
+          class="text-center text-3xl font-bold text-gray-900 dark:text-white mb-16 uppercase tracking-widest italic"
+        >
+          &middot; Keahlian Teknis Inti
+        </h2>
+        <div class="hexagon-grid max-w-2xl mx-auto" id="skill-hexagon-grid">
+          <div
+            class="skill-hexagon bg-card-light dark:bg-gray-800 shadow-soft dark:shadow-soft-dark opacity-0 transform scale-95"
+            data-skill-level="90"
+            data-scroll-reveal-child
+          >
+            <div class="skill-level-overlay skill-level-90"></div>
+            <div class="skill-icon-content">
+              <i class="fab fa-react text-4xl mb-2"></i>
+              <h3 class="font-bold text-xs uppercase">React/Vue</h3>
+              <span
+                class="text-xs font-bold text-primary dark:text-primary-dark-mode"
+                >90%</span
+              >
+            </div>
+          </div>
+          <div
+            class="skill-hexagon bg-card-light dark:bg-gray-800 shadow-soft dark:shadow-soft-dark opacity-0 transform scale-95 delay-100"
+            data-skill-level="95"
+            data-scroll-reveal-child
+          >
+            <div class="skill-level-overlay skill-level-95"></div>
+            <div class="skill-icon-content">
+              <i class="fab fa-css3-alt text-4xl mb-2"></i>
+              <h3 class="font-bold text-xs uppercase text-[10px]">
+                HTML/Tailwind
+              </h3>
+              <span
+                class="text-xs font-bold text-primary dark:text-primary-dark-mode"
+                >95%</span
+              >
+            </div>
+          </div>
+          <div
+            class="skill-hexagon bg-card-light dark:bg-gray-800 shadow-soft dark:shadow-soft-dark opacity-0 transform scale-95 delay-200"
+            data-skill-level="88"
+            data-scroll-reveal-child
+          >
+            <div class="skill-level-overlay skill-level-88"></div>
+            <div class="skill-icon-content">
+              <!-- Ikon diubah menjadi fa-android -->
+              <i class="fab fa-android text-4xl mb-2"></i>
+              <h3 class="font-bold text-xs uppercase">Android Studio</h3>
+              <span
+                class="text-xs font-bold text-primary dark:text-primary-dark-mode"
+                >88%</span
+              >
+            </div>
+          </div>
+          <div
+            class="skill-hexagon bg-card-light dark:bg-gray-800 shadow-soft dark:shadow-soft-dark opacity-0 transform scale-95 delay-300"
+            data-skill-level="80"
+            data-scroll-reveal-child
+          >
+            <div class="skill-level-overlay skill-level-80"></div>
+            <div class="skill-icon-content">
+              <i class="fas fa-tachometer-alt text-4xl mb-2"></i>
+              <h3 class="font-bold text-[10px] uppercase">Performance</h3>
+              <span
+                class="text-xs font-bold text-primary dark:text-primary-dark-mode"
+                >80%</span
+              >
+            </div>
+          </div>
+          <div
+            class="skill-hexagon bg-card-light dark:bg-gray-800 shadow-soft dark:shadow-soft-dark opacity-0 transform scale-95 delay-400"
+            data-skill-level="75"
+            data-scroll-reveal-child
+          >
+            <div class="skill-level-overlay skill-level-75"></div>
+            <div class="skill-icon-content">
+              <i class="fab fa-node-js text-4xl mb-2"></i>
+              <h3 class="font-bold text-[10px] uppercase">Node/DB</h3>
+              <span
+                class="text-xs font-bold text-primary dark:text-primary-dark-mode"
+                >75%</span
+              >
+            </div>
+          </div>
+          <div
+            class="skill-hexagon bg-card-light dark:bg-gray-800 shadow-soft dark:shadow-soft-dark opacity-0 transform scale-95 delay-500"
+            data-skill-level="85"
+            data-scroll-reveal-child
+          >
+            <div class="skill-level-overlay skill-level-85"></div>
+            <div class="skill-icon-content">
+              <i class="fab fa-git-alt text-4xl mb-2"></i>
+              <h3 class="font-bold text-xs uppercase">Git CI/CD</h3>
+              <span
+                class="text-xs font-bold text-primary dark:text-primary-dark-mode"
+                >85%</span
+              >
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section
+        class="py-16 md:py-24 opacity-0 translate-y-5 transition-all duration-700 ease-out"
+        data-scroll-reveal
+      >
+        <h2
+          class="text-center text-3xl font-bold text-gray-900 dark:text-white mb-16 uppercase tracking-widest italic"
+        >
+          &middot; Riwayat Pendidikan & Karir
+        </h2>
+        <div
+          class="relative max-w-3xl mx-auto pl-8 border-l-4 border-primary/20 dark:border-primary-dark-mode/20"
+        >
+          <div
+            class="timeline-item relative pl-10 pb-12 opacity-0 translate-y-5 transition-all duration-700 ease-out"
+            data-scroll-reveal-child
+          >
+            <div
+              class="absolute -left-[44px] top-0 w-8 h-8 bg-primary rounded-full border-4 border-card-light dark:border-gray-900 flex items-center justify-center text-white text-xs"
+            >
+              <i class="fas fa-rocket"></i>
+            </div>
+            <div
+              class="font-bold text-primary dark:text-primary-dark-mode mb-2 text-lg"
+            >
+              2023 - Sekarang
+            </div>
+            <div
+              class="timeline-content bg-card-light dark:bg-gray-800 p-6 rounded-2xl shadow-md border border-gray-50 dark:border-gray-700 hover:shadow-xl transition-all"
+            >
+              <h3 class="text-xl font-bold mb-2">
+                Independent Learner & Tech Enthusiast
+              </h3>
+              <p class="text-gray-600 dark:text-gray-400 text-sm">
+                Berfokus pada pengembangan portofolio mandiri dan mendalami
+                integrasi Machine Learning dalam ekosistem Frontend Development.
+              </p>
+            </div>
+          </div>
+
+          <div
+            class="timeline-item relative pl-10 pb-12 opacity-0 translate-y-5 transition-all duration-700 ease-out delay-100"
+            data-scroll-reveal-child
+          >
+            <div
+              class="absolute -left-[44px] top-0 w-8 h-8 bg-gray-400 rounded-full border-4 border-card-light dark:border-gray-900 flex items-center justify-center text-white text-xs"
+            >
+              <i class="fas fa-briefcase"></i>
+            </div>
+            <div class="font-bold text-gray-500 mb-2 text-lg text-opacity-80">
+              2023 - 2026
+            </div>
+            <div
+              class="timeline-content bg-card-light dark:bg-gray-800 p-6 rounded-2xl shadow-md border border-gray-50 dark:border-gray-700 hover:shadow-xl transition-all opacity-80"
+            >
+              <h3 class="text-xl font-bold mb-2 italic text-gray-400">
+                Junior Web Designer
+              </h3>
+              <p class="text-gray-500 dark:text-gray-400 text-sm italic">
+                Mengimplementasikan desain UI/UX aplikasi internal dan berhasil
+                meningkatkan skor aksesibilitas sebesar 30%.
+              </p>
+            </div>
+          </div>
+
+          <div
+            class="timeline-item relative pl-10 pb-12 opacity-0 translate-y-5 transition-all duration-700 ease-out delay-200"
+            data-scroll-reveal-child
+          >
+            <div
+              class="absolute -left-[44px] top-0 w-8 h-8 bg-primary/40 rounded-full border-4 border-card-light dark:border-gray-900 flex items-center justify-center text-white text-xs"
+            >
+              <i class="fas fa-graduation-cap"></i>
+            </div>
+            <div
+              class="font-bold text-primary/60 mb-2 text-lg uppercase tracking-wider"
+            >
+              2023 - 2027 (Expected)
+            </div>
+            <div
+              class="timeline-content bg-card-light dark:bg-gray-800 p-6 rounded-2xl shadow-md border border-gray-50 dark:border-gray-700 hover:shadow-xl transition-all"
+            >
+              <h3 class="text-xl font-bold mb-2">
+                Sarjana Teknologi Informasi
+              </h3>
+              <p class="text-gray-600 dark:text-gray-400 text-sm">
+                Universitas Pamulang. Saat ini aktif mendalami mata kuliah
+                Algoritma, Struktur Data, dan Arsitektur Web Modern sebagai
+                persiapan karir profesional.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer
+      class="main-footer text-center py-10 mt-20 bg-card-light dark:bg-gray-800 border-t border-gray-200 dark:border-gray-700"
+    >
+      <div
+        class="flex justify-center space-x-6 mb-4 text-gray-600 dark:text-gray-400"
+      >
+        <a
+          href="https://www.linkedin.com/in/sabrina-luna-apsari-faizah/"
+          target="_blank"
+          rel="noreferrer"
+          aria-label="Profil LinkedIn Sabrina Luna"
+          class="hover:text-primary dark:hover:text-primary-dark-mode transition duration-300"
+        >
+          <i class="fab fa-linkedin mr-1"></i> LinkedIn
+        </a>
+        <a
+          href="https://github.com/Aliaaanay"
+          target="_blank"
+          rel="noreferrer"
+          aria-label="Profil GitHub Sabrina Luna"
+          class="hover:text-primary dark:hover:text-primary-dark-mode transition duration-300"
+        >
+          <i class="fab fa-github mr-1"></i> GitHub
+        </a>
+        <a
+          href="https://mail.google.com/mail/u/0/?tab=rm&ogbl#inbox?compose=CllgCHrjFGqXNhCvcjxNBvPZRgHCQCrTBVjpwWxCQCClPDkxHlZLSdXqZZdXsNQckBDsFwfVXXV"
+          aria-label="Kirim Email ke Sabrina Luna"
+          class="hover:text-primary dark:hover:text-primary-dark-mode transition duration-300"
+        >
+          <i class="fas fa-envelope mr-1"></i> Email
+        </a>
+      </div>
+      <p class="text-sm text-gray-500 dark:text-gray-500">
+        &copy; 2026 Created by Sabrina Luna Apsari Faizah. All rights reserved.
+      </p>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>
